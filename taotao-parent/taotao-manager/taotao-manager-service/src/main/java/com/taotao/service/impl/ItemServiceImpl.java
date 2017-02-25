@@ -11,11 +11,13 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.taotao.mapper.TbItemDescMapper;
 import com.taotao.mapper.TbItemMapper;
+import com.taotao.mapper.TbItemParamItemMapper;
 import com.taotao.pojo.EUDataGridResult;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
 import com.taotao.pojo.TbItemExample;
 import com.taotao.pojo.TbItemExample.Criteria;
+import com.taotao.pojo.TbItemParamItem;
 import com.taotao.result.TaotaoResult;
 import com.taotao.service.ItemService;
 import com.taotao.utils.IDUtils;
@@ -34,6 +36,8 @@ public class ItemServiceImpl implements ItemService{
 	private TbItemMapper itemMapper;
 	@Autowired
 	private TbItemDescMapper itemDescMapper;
+	@Autowired
+	private TbItemParamItemMapper itemParamItemMapper;
 	/**
 	 * 通过商品id查询商品
 	 * <p>Title: getItemById</p>
@@ -89,7 +93,7 @@ public class ItemServiceImpl implements ItemService{
 	 * @return: TaotaoResult
 	 */
 	@Override
-	public TaotaoResult addItem(TbItem tbItem,TbItemDesc tbItemDesc) {
+	public TaotaoResult addItem(TbItem tbItem,TbItemDesc tbItemDesc,TbItemParamItem tbItemParamItem) {
 		try {
 			/**
 			 * 补全商品信息
@@ -109,10 +113,28 @@ public class ItemServiceImpl implements ItemService{
 			tbItemDesc.setUpdated(date);
 			//把商品描述添加到商品描述表
 			itemDescMapper.insert(tbItemDesc);
+			/*添加规格参数值到tb_item_param_item表中*/
+			TaotaoResult result = insertItemParamItem(itemId,tbItemParamItem);
+			if(result.getStatus() != 200){
+				throw new Exception();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return TaotaoResult.build(500, "系统发生异常");
 		}
+		return TaotaoResult.ok();
+	}
+	/**
+	 * 将规格参数插入到数据库中
+	 * @param itemId
+	 * @param tbItemParamItem
+	 * @return
+	 */
+	public TaotaoResult insertItemParamItem(Long itemId,TbItemParamItem tbItemParamItem){
+		tbItemParamItem.setItemId(itemId);
+		tbItemParamItem.setCreated(new Date());
+		tbItemParamItem.setUpdated(new Date());
+		itemParamItemMapper.insert(tbItemParamItem);
 		return TaotaoResult.ok();
 	}
 	

@@ -1,5 +1,6 @@
 package com.taotao.service;
 
+import com.taotao.pojo.EUDataGridResult;
 import com.taotao.pojo.TbItemParam;
 import com.taotao.result.TaotaoResult;
 /**
@@ -28,4 +29,14 @@ public interface ItemParamService {
 	 * @return: TaotaoResult
 	 */
 	TaotaoResult insertItemParam(TbItemParam itemParam);
+	
+	/**
+	 * 显示规格参数模板
+	 * <p>Title: showItemParam</p>
+	 * <p>Description: </p>
+	 * @param page
+	 * @param rows
+	 * @return: EUDataGridResult
+	 */
+	EUDataGridResult showItemParam(int page,int rows);
 }

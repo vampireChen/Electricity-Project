@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.taotao.pojo.EUDataGridResult;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
+import com.taotao.pojo.TbItemParamItem;
 import com.taotao.result.TaotaoResult;
 import com.taotao.service.ItemService;
 @Controller
@@ -56,10 +57,12 @@ public class ItemController {
 	 */
 	@RequestMapping(value="/item/save",method=RequestMethod.POST)
 	@ResponseBody
-	public TaotaoResult addItem(TbItem item,String desc){
+	public TaotaoResult addItem(TbItem item,String desc,String itemParams){
 		TbItemDesc itemDesc = new TbItemDesc();
 		itemDesc.setItemDesc(desc);
-		TaotaoResult taotaoResult = itemService.addItem(item, itemDesc);
+		TbItemParamItem tbItemParamItem = new TbItemParamItem();
+		tbItemParamItem.setParamData(itemParams);
+		TaotaoResult taotaoResult = itemService.addItem(item, itemDesc,tbItemParamItem);
 		return taotaoResult;
 		
 	}

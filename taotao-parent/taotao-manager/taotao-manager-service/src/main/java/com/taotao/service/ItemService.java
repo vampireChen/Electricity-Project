@@ -3,6 +3,7 @@ package com.taotao.service;
 import com.taotao.pojo.EUDataGridResult;
 import com.taotao.pojo.TbItem;
 import com.taotao.pojo.TbItemDesc;
+import com.taotao.pojo.TbItemParamItem;
 import com.taotao.result.TaotaoResult;
 
 public interface ItemService {
@@ -30,5 +31,5 @@ public interface ItemService {
 	 * @param tbItem
 	 * @return: TaotaoResult
 	 */
-	TaotaoResult addItem(TbItem tbItem,TbItemDesc tbItemDesc);
+	TaotaoResult addItem(TbItem tbItem, TbItemDesc tbItemDesc, TbItemParamItem tbItemParamItem);
 }

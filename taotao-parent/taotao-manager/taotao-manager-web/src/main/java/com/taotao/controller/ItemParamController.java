@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.taotao.pojo.EUDataGridResult;
 import com.taotao.pojo.TbItemParam;
 import com.taotao.result.TaotaoResult;
 import com.taotao.service.ItemParamService;
@@ -38,6 +39,13 @@ public class ItemParamController {
 		itemParam.setItemCatId(cid);
 		itemParam.setParamData(paramData);
 		TaotaoResult result = itemParamService.insertItemParam(itemParam);
+		return result;
+	}
+	
+	@RequestMapping("/list")
+	@ResponseBody
+	public EUDataGridResult showItemParam(int page,int rows){
+		EUDataGridResult result = itemParamService.showItemParam(page, rows);
 		return result;
 	}
 	
