@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.taotao.result.TaotaoResult;
 
 /**
- * 淘淘商城自定义响应结构
+ * 涛涛商城自定义响应结构
  */
 public class JsonUtils {
 

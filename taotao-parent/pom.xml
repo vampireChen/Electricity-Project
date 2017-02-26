@@ -180,6 +180,8 @@
 	<modules>
 		<module>taotao-common</module>
 		<module>taotao-manager</module>
+		<module>taotao-rest</module>
+		<module>taotao-portal</module>
 	</modules>
 	<build>
 		<finalName>${project.artifactId}</finalName>
