@@ -16,6 +16,7 @@
 		            <th data-options="field:'url',width:60,align:'center',formatter:TAOTAO.formatUrl">内容连接</th>
 		            <th data-options="field:'pic',width:50,align:'center',formatter:TAOTAO.formatUrl">图片</th>
 		            <th data-options="field:'pic2',width:50,align:'center',formatter:TAOTAO.formatUrl">图片2</th>
+		            <th data-options="field:'content',width:120" hidden="true">内容</th>
 		            <th data-options="field:'created',width:130,align:'center',formatter:TAOTAO.formatDateTime">创建日期</th>
 		            <th data-options="field:'updated',width:130,align:'center',formatter:TAOTAO.formatDateTime">更新日期</th>
 		        </tr>
@@ -48,7 +49,7 @@ var contentListToolbar = [{
     		return ;
     	}
     	TT.createWindow({
-			url : "/content-add"
+			url : "/content-add" //此url指的是当点击新增按钮时跳转到content-add.jsp
 		}); 
     }
 },{
@@ -68,6 +69,7 @@ var contentListToolbar = [{
 			url : "/content-edit",
 			onLoad : function(){
 				var data = $("#contentList").datagrid("getSelections")[0];
+				
 				$("#contentEditForm").form("load",data);
 				
 				// 实现图片

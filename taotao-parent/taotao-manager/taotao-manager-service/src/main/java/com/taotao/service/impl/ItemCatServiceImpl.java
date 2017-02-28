@@ -26,6 +26,13 @@ import com.taotao.service.ItemCatService;
 public class ItemCatServiceImpl implements ItemCatService {
 	@Autowired
 	private TbItemCatMapper itemCatMapper;
+	/**
+	 * 取商品分类树
+	 * <p>Title: getItemCatList</p>
+	 * <p>Description: </p>
+	 * @param parentId
+	 * @return: List<TreeNode>
+	 */
 	@Override
 	public List<TreeNode> getItemCatList(long parentId) {
 		//根据parentId查询分类列表

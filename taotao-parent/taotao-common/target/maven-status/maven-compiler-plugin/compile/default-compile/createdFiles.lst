@@ -5,3 +5,5 @@ com/taotao/pojo/EUDataGridResult.class
 com/taotao/pojo/TreeNode.class
 com/taotao/utils/IDUtils.class
 com/taotao/result/PictureResult.class
+com/taotao/utils/HttpClientUtil.class
+com/taotao/utils/ExceptionUtil.class
