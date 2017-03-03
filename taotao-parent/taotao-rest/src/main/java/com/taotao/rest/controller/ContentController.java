@@ -5,6 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.taotao.pojo.TbContent;
+import com.taotao.rest.service.ContentService;
+import com.taotao.result.TaotaoResult;
+import com.taotao.utils.ExceptionUtil;
+
 /**
  * 内容发布controller
  * <p>Title: ContentController</p>
@@ -14,13 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @date:2017年2月28日下午4:21:02
  * @version:1.0
  */
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.taotao.pojo.TbContent;
-import com.taotao.rest.service.ContentService;
-import com.taotao.result.TaotaoResult;
-import com.taotao.utils.ExceptionUtil;
 @Controller
 @RequestMapping("/content")
 public class ContentController {

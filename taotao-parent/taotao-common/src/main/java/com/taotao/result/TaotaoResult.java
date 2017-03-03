@@ -41,7 +41,10 @@ public class TaotaoResult {
     public static TaotaoResult build(Integer status, String msg) {
         return new TaotaoResult(status, msg, null);
     }
-
+    
+    public static String build(String msg) {
+        return msg;
+    }
     public TaotaoResult(Integer status, String msg, Object data) {
         this.status = status;
         this.msg = msg;

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -15,6 +16,7 @@ import com.taotao.pojo.TbContentExample;
 import com.taotao.pojo.TbContentExample.Criteria;
 import com.taotao.result.TaotaoResult;
 import com.taotao.service.ContentService;
+import com.taotao.utils.HttpClientUtil;
 /**
  * 内容管理
  * <p>Title: ContentServiceImpl</p>
@@ -28,6 +30,10 @@ import com.taotao.service.ContentService;
 public class ContentServiceImpl implements ContentService {
 	@Autowired
 	private TbContentMapper contentMapper;
+	@Value("${REST_BASE_URL}")
+	private String REST_BASE_URL;
+	@Value("${REST_CONTENT_SYNC_URL}")
+	private String REST_CONTENT_SYNC_URL;
 	/**
 	 * 分页显示内容
 	 * <p>Title: showContent</p>
@@ -89,6 +95,16 @@ public class ContentServiceImpl implements ContentService {
 			tbContent.setCreated(new Date());
 			tbContent.setUpdated(new Date());
 			contentMapper.updateByPrimaryKey(tbContent);
+			/**
+			 * 添加缓存同步逻辑
+			 * @author chenhaitao
+			 * @date 2017.03.03
+			 */
+			try {
+				HttpClientUtil.doGet(REST_BASE_URL + REST_CONTENT_SYNC_URL);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return TaotaoResult.ok();
 		} catch (Exception e) {
 			e.printStackTrace();
